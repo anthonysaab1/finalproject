@@ -8,18 +8,21 @@ let okBtn = document.getElementById("okBtn");
 let happyCt = document.getElementById("happyBtn");
 let sadCt = document.getElementById("sadBtn");
 let angryCt = document.getElementById("angryBtn");
+let loader = document.getElementById("loader")
+console.log(loader)
 let datas;
-function filterCategories(category , num){
+async function filterCategories(category , num){
   category = datas.filter((ca) => ca.category_id == num) ;
   moviee.innerHTML = "";
   creatMovie(category)
+  loader.style.display = "none";
 }
-catAction.onclick = function () {
+catAction.onclick = async function () {
   let action;
 
 filterCategories(action, 3);
 };
-catComedy.onclick = function () {
+catComedy.onclick = async function () {
   let comedy;
 
   filterCategories(comedy, 2);
@@ -29,12 +32,12 @@ catDrama.addEventListener("click",  () => {
 
  filterCategories(drama, 1)
 });
-catThriller.onclick = function () {
+catThriller.onclick = async function () {
   let thriller ;
 
 filterCategories(thriller , 4)
 };
-catAll.onclick = function () {
+catAll.onclick = async function () {
   moviee.innerHTML = "";
   creatMovie(datas);
 };
@@ -47,7 +50,8 @@ fetch('get_movies.php')
   })
   .catch(error => console.error('Error fetching data:', error));
   console.log(datas)
-function creatMovie(data){
+async function creatMovie(data){
+  loader.style.display = "block";
   let cont = document.getElementById("codes-container");
   data.forEach(Movie => { 
     console.log(Movie.category_id);
@@ -63,20 +67,25 @@ function creatMovie(data){
   movieTitle.innerHTML = `${Movie.title}`;
 
   let moviecbtn = document.createElement("button");
-  moviecbtn.onclick = () => toggle(Movie.id, `${Movie.title}`);
-
+  moviecbtn.setAttribute("id", "favBtn")
+  // moviecbtn.onclick = () => toggle(Movie.id, `${Movie.title}`);
+  // let movieBtnadd = document.createElement("button");
+  // movieBtnadd.setAttribute("id", "favBtn")
+  let moviefav = document.createElement("img")
+  moviefav.setAttribute("class", "favorite-image");
+  moviefav.src = Movie.fav;
   let movieImg = document.createElement("img");
   movieImg.setAttribute("id", "mytn");
   movieImg.src = Movie.image;
   let moviebtn = document.createElement("div");
   moviebtn.setAttribute("id", "myBtn");
-  moviebtn.addEventListener("click", function () {
+  moviebtn.addEventListener("click", async function () {
     let modal = document.querySelector("#myModal");
     const btn = document.querySelectorAll("#myBtn");
     const span = document.getElementById("close");
     let video = document.createElement("video");
     modal.style.display = "block";
-    span.onclick = function () {
+    span.onclick = async function () {
       modal.style.display = "none";
       document.getElementById("modal-a").removeChild(video);
     };
@@ -91,18 +100,21 @@ function creatMovie(data){
     video.appendChild(source);
     document.getElementById("modal-a").appendChild(video);
   });
-
-  moviebox.append(movieItem, moviebtn);
+  moviecbtn.appendChild(moviefav)
   movieItem.append(movieTitle, moviecbtn);
+  moviebox.append(moviebtn, movieItem);
+  // moviecbtn.appendChild(movieBtnadd);
+  
   cont.append(moviebox);
   moviebtn.appendChild(movieImg); });
+  loader.style.display = "none";
 }
 let navLinks = document.querySelectorAll('#nav button');
 
 
-function updateActive(event) {
+async function updateActive(event) {
 
-  navLinks.forEach(function(link) {
+  navLinks.forEach(async function(link) {
     link.classList.remove('active');
   });
 
@@ -110,7 +122,7 @@ function updateActive(event) {
   event.target.classList.add('active');
 }
 
-navLinks.forEach(function(link) {
+navLinks.forEach(async function(link) {
   link.addEventListener('click', updateActive);
 });
 
@@ -129,13 +141,13 @@ if (currentHash) {
 let modal2 = document.getElementById("myModal2");2
 let btn = document.getElementById("myBtn2");
 let span = document.getElementsByClassName("close2")[0];
-btn.onclick = function () {
+btn.onclick = async function () {
   modal2.style.display = "block";
 };
-span.onclick = function () {
+span.onclick = async function () {
   modal2.style.display = "none";
 };
-window.onclick = function (event) {
+window.onclick = async function (event) {
   if (event.target == modal2) {
     modal2.style.display = "none";
   }
@@ -158,8 +170,10 @@ okBtn.addEventListener("click", ()=>{
 fetch('category.php')
   .then(response => response.json())
   .then(data => {
+    loader.style.display = "block";
    data.forEach((category)=>{
     console.log(category.title);
    })
+   loader.style.display = "none";
   })
   .catch(error => console.error('Error fetching data:', error));
