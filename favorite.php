@@ -28,7 +28,7 @@ if (isset($input['userId']) && isset($input['movie_id'])) {
     $password = "";
     $dbname = "movies";
 
-
+    // $sql = "SELECT a.*,  (SELECT COUNT(id) FROM user_favorite WHERE user_id = ".  $id ." AND movie_id = a.id) AS user_fav FROM movies a";
     $conn = new mysqli($servername, $username, $password, $dbname);
 
    

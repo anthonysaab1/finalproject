@@ -11,6 +11,7 @@ let angryCt = document.getElementById("angryBtn");
 let loader = document.getElementById("loader");
 console.log(loader);
 let datas;
+let userIdArr = localStorage.userId ? JSON.parse(localStorage.userId) : [];
 async function filterCategories(category, num) {
   category = datas.filter((ca) => ca.category_id == num);
   moviee.innerHTML = "";
@@ -41,7 +42,7 @@ catAll.onclick = async function () {
   moviee.innerHTML = "";
   creatMovie(datas);
 };
-fetch("get_movies.php")
+fetch("get_movies.php?id=1")
   .then((response) => response.json())
   .then((data) => {
     creatMovie(data);
@@ -61,20 +62,24 @@ async function creatMovie(data) {
 
     let movieTitle = document.createElement("span");
     movieTitle.setAttribute("id", "movie-title");
-    movieTitle.innerHTML = `${Movie.title}`;
+    movieTitle.innerHTML = `${Movie.title} `;
 
     let moviecbtn = document.createElement("button");
     moviecbtn.setAttribute("id", "favBtn");
 
-    // moviecbtn.onclick = () => toggle(Movie.id, `${Movie.title}`);
-    // let movieBtnadd = document.createElement("button");
-    // movieBtnadd.setAttribute("id", "favBtn")
-    let moviefav = document.createElement("img");
+    let moviefav = document.createElement("svg");
     moviefav.setAttribute("class", "favorite-image");
-    moviefav.src = Movie.fav;
+
     let movieImg = document.createElement("img");
     movieImg.setAttribute("id", "mytn");
     movieImg.src = Movie.image;
+    if (Movie.user_fav == 1) {
+      moviefav.innerHTML = favIconRed;
+      moviefav.setAttribute("id", "redFaveIcon");
+    } else {
+      moviefav.innerHTML = favIcon;
+      moviefav.setAttribute("id", "blackFaveIcon");
+    }
     let moviebtn = document.createElement("div");
     moviebtn.setAttribute("id", "myBtn");
     moviebtn.addEventListener("click", async function () {
@@ -98,7 +103,7 @@ async function creatMovie(data) {
       video.appendChild(source);
       document.getElementById("modal-a").appendChild(video);
     });
-    favVideo(moviecbtn, Movie.id, Movie);
+    favVideo(moviecbtn, Movie.id, Movie, moviefav);
     moviecbtn.appendChild(moviefav);
     movieItem.append(movieTitle, moviecbtn);
     moviebox.append(moviebtn, movieItem);
@@ -163,60 +168,73 @@ okBtn.addEventListener("click", () => {
   }
   modal2.style.display = "none";
 });
-
-fetch("category.php")
-  .then((response) => response.json())
-  .then((data) => {
-    loader.style.display = "block";
-    data.forEach((category) => {
-      console.log(category.title);
-    });
-    loader.style.display = "none";
-  })
-  .catch((error) => console.error("Error fetching data:", error));
-/////
-
-// fetch("favorite.php")
-//   .then((response) => response.json())
-//   .then((data) => {
-//     loader.style.display = "block";
-//     data.forEach((favorite) => {
-//       console.log(favorite);
-//     });
-//     loader.style.display = "none";
-//   })
-//   .catch((error) => console.error("Error fetching data:", error));
-////
-async function favVideo(moviecbtn, id, Movie) {
+const movieButton = document.getElementById("myMovieButton");
+const redFaveIcon = document.getElementById("redFaveIcon");
+async function favVideo(moviecbtn, id, Movie, moviefav) {
   moviecbtn.addEventListener("click", async () => {
-    console.log(Movie.id);
-    for (let i = 0; i < datas.length; i++) {
-      if (Movie.id == datas[i].id) {
-        try {
-          let response = await fetch("favorite.php", {
-            method: "POST",
-            body: JSON.stringify({
-              id: 1,
-              userId: 1,
-              movie_id: Movie.id,
-            }),
-            headers: {
-              "Content-Type": "application/json; charset=UTF-8",
-            },
-          });
+    if (!userIdArr.includes(Movie.id)) {
+      for (let i = 0; i < datas.length; i++) {
+        if (Movie.id == datas[i].id) {
+          userIdArr.push(Movie.id);
+          localStorage.setItem("userId", JSON.stringify(userIdArr));
+          try {
+            let response = await fetch("favorite.php", {
+              method: "POST",
+              body: JSON.stringify({
+                id: 1,
+                userId: 1,
+                movie_id: Movie.id,
+              }),
+              headers: {
+                "Content-Type": "application/json; charset=UTF-8",
+              },
+            });
 
-          if (response.ok) {
-            console.log("Request successful");
-            let result = await response.json();
-            console.log(result);
-          } else {
-            console.error("Request failed", response.statusText);
+            if (response.ok) {
+              console.log("Request successful");
+              let result = await response.json();
+              console.log(result);
+              console.log(moviefav);
+              moviefav.innerHTML = favIconRed;
+            } else {
+              console.error("Request failed", response.statusText);
+            }
+          } catch (error) {
+            console.error("Error occurred", error);
           }
-        } catch (error) {
-          console.error("Error occurred", error);
         }
       }
+    } else {
+      // moviecbtn.addEventListener("dbclick", async () => {
+      //   for (let i = 0; i < datas.length; i++) {
+      //     if (Movie.id == datas[i].id) {
+      //       try {
+      //         const response = await fetch(
+      //           `"favorite.php"`,
+      //           {
+      //             method: "DELETE",
+      //           },
+      //         );
+      //         if (!response.ok) {
+      //           throw new Error(`Failed to delete object with ID `);
+      //         } else {
+      //           moviefav.innerHTML = favIcon;
+      //         }
+      //       } catch (error) {
+      //         console.error("Error occurred", error);
+      //       }
+      //     }
+      //   }
+      // });
     }
   });
 }
+
 console.log("movie");
+
+let favIconRed = `<svg id= "iconRed" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2
+ by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+ <path d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 
+ 36.5 300.6 51.4 268 84L256 96 244
+ 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z" /></svg>`;
+let favIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg>`;
