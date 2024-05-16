@@ -46,16 +46,13 @@ fetch("get_movies.php")
   .then((data) => {
     creatMovie(data);
     datas = data;
-    console.log(data);
   })
   .catch((error) => console.error("Error fetching data:", error));
-console.log(datas);
+
 async function creatMovie(data) {
   loader.style.display = "block";
   let cont = document.getElementById("codes-container");
   data.forEach((Movie) => {
-    console.log(Movie.category_id);
-
     let moviebox = document.createElement("div");
     moviebox.setAttribute("class", "box");
 
@@ -68,6 +65,7 @@ async function creatMovie(data) {
 
     let moviecbtn = document.createElement("button");
     moviecbtn.setAttribute("id", "favBtn");
+
     // moviecbtn.onclick = () => toggle(Movie.id, `${Movie.title}`);
     // let movieBtnadd = document.createElement("button");
     // movieBtnadd.setAttribute("id", "favBtn")
@@ -126,7 +124,7 @@ navLinks.forEach(async function (link) {
 });
 
 let currentHash = window.location.hash;
-console.log(currentHash);
+
 if (currentHash) {
   let currentLink = document.querySelector('a[href="' + currentHash + '"]');
   if (currentLink) {
@@ -178,32 +176,46 @@ fetch("category.php")
   .catch((error) => console.error("Error fetching data:", error));
 /////
 
-fetch("favorite.php")
-  .then((response) => response.json())
-  .then((data) => {
-    loader.style.display = "block";
-    data.forEach((favorite) => {
-      console.log(favorite);
-    });
-    loader.style.display = "none";
-  })
-  .catch((error) => console.error("Error fetching data:", error));
-///
-let movieFavBtn = document.getElementById("favBtn");
+// fetch("favorite.php")
+//   .then((response) => response.json())
+//   .then((data) => {
+//     loader.style.display = "block";
+//     data.forEach((favorite) => {
+//       console.log(favorite);
+//     });
+//     loader.style.display = "none";
+//   })
+//   .catch((error) => console.error("Error fetching data:", error));
+////
 async function favVideo(moviecbtn, id, Movie) {
-  moviecbtn.addEventListener((movie) => {
-    if (Movie.id == movie.id) {
-      fetch("favorite.php", {
-        method: "POST",
-        body: JSON.stringify({
-          id: `1`,
-          userId: `1`,
-          movie_id: id,
-        }),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-      });
+  moviecbtn.addEventListener("click", async () => {
+    console.log(Movie.id);
+    for (let i = 0; i < datas.length; i++) {
+      if (Movie.id == datas[i].id) {
+        try {
+          let response = await fetch("favorite.php", {
+            method: "POST",
+            body: JSON.stringify({
+              id: 1,
+              userId: 1,
+              movie_id: Movie.id,
+            }),
+            headers: {
+              "Content-Type": "application/json; charset=UTF-8",
+            },
+          });
+
+          if (response.ok) {
+            console.log("Request successful");
+            let result = await response.json();
+            console.log(result);
+          } else {
+            console.error("Request failed", response.statusText);
+          }
+        } catch (error) {
+          console.error("Error occurred", error);
+        }
+      }
     }
   });
 }
