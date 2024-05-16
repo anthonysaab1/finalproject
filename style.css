@@ -1,18 +1,17 @@
 .container {
-	background-color:rgba(32, 14, 14, 0.6) ;
-	border-radius: 10px;
-	backdrop-filter: blur(50%);
-	padding-top: 30px;
-	padding-left: 40px;
-	display: flex;
-	/* display: auto; */
-	flex-direction: row;
-	justify-content: start;
-	flex-wrap: wrap;
-	column-gap: 30px;
-	row-gap: 40px;
-	padding-bottom: 50px;
-	
+  background-color: rgba(32, 14, 14, 0.6);
+  border-radius: 10px;
+  backdrop-filter: blur(50%);
+  padding-top: 30px;
+  padding-left: 40px;
+  display: flex;
+  /* display: auto; */
+  flex-direction: row;
+  justify-content: start;
+  flex-wrap: wrap;
+  column-gap: 30px;
+  row-gap: 40px;
+  padding-bottom: 50px;
 }
 
 .box {
@@ -21,7 +20,7 @@
   font-weight: bold;
   width: 270px;
   height: 350px;
-  background-color:hsla(0, 100%, 5%, 0.6)
+  background-color: hsla(0, 100%, 5%, 0.6);
 }
 #movie-title {
   color: rgb(255, 255, 255);
@@ -40,31 +39,33 @@
   padding: 0;
 }
 body {
-	background: #8E0E00;  /* fallback for old browsers */
-	background: -webkit-linear-gradient(to right, #1F1C18, #8E0E00);  /* Chrome 10-25, Safari 5.1-6 */
-	background: linear-gradient(to right, #1F1C18, #8E0E00);
-
+  background: #8e0e00; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #1f1c18,
+    #8e0e00
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #1f1c18, #8e0e00);
 }
-#mytn{
-	padding-top: 20px;
+#mytn {
+  padding-top: 20px;
 }
 .box img {
   height: 300px;
-  
+
   /* border-radius: 15px; */
 }
 .box .favorite-image {
   height: 30px;
   width: 30px;
 }
-.box button{
-	width: 40px;
-	height: 40px;
-	
+.box button {
+  width: 40px;
+  height: 40px;
 }
-#favBtn{
-	border-radius: 50px;
-	background-color:hsla(0, 100%, 90%, 0.6) ;  
+#favBtn {
+  border-radius: 50px;
+  background-color: hsla(0, 100%, 90%, 0.6);
 }
 .arrow {
   margin: 20px;
@@ -89,7 +90,7 @@ body {
   height: 50px;
 }
 .button-mid {
-width: 1000px;
+  width: 1000px;
   /* height: 100px; */
   padding-left: 40px;
   display: flex;
@@ -106,27 +107,25 @@ width: 1000px;
   height: 60px;
   width: 150px;
   margin: 10px;
-  background-color:rgba(255, 224, 224, 0.6) ;
+  background-color: rgba(255, 224, 224, 0.6);
   box-shadow: 3px px rgb(183, 183, 183);
 }
-.ba:hover{
-  background-color:hsla(0, 100%, 80%, 0.6) ;
-
+.ba:hover {
+  background-color: hsla(0, 100%, 80%, 0.6);
 }
-.ba:active{
-  background-color:hsla(0, 100%, 70%, 0.6) ;
+.ba:active {
+  background-color: hsla(0, 100%, 70%, 0.6);
 }
 .box:hover {
   transform: scale(1.2);
 }
 .active {
-    background-color: hsla(0, 100%, 70%, 0.6);
-  }
+  background-color: hsla(0, 100%, 70%, 0.6);
+}
 .whole-page {
   padding-left: 50px;
   padding-right: 50px;
   padding-bottom: 50px;
-
 }
 .movie-last {
   font-size: 10px;
@@ -135,7 +134,6 @@ width: 1000px;
   margin: 20px;
   justify-content: center;
   display: flex;
-
 }
 .arrow-last {
   margin: 20px;
@@ -158,7 +156,6 @@ body {
   overflow: auto;
 
   background-color: rgba(0, 0, 0, 0.4);
-  
 }
 
 .modals {
@@ -175,14 +172,22 @@ body {
   background-color: rgba(0, 0, 0, 0.4);
 }
 .modal-contents {
-  background-image: linear-gradient(to right,hsl(0, 65%, 76%) ,hsl(0, 65%, 56%));
+  background-image: linear-gradient(
+    to right,
+    hsl(0, 65%, 76%),
+    hsl(0, 65%, 56%)
+  );
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
 }
 .modal-content {
-  background-image: linear-gradient(to right,hsl(0, 65%, 76%) ,hsl(0, 65%, 56%));
+  background-image: linear-gradient(
+    to right,
+    hsl(0, 65%, 76%),
+    hsl(0, 65%, 56%)
+  );
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
@@ -216,359 +221,361 @@ body {
   cursor: pointer;
 }
 
-
-.btn{
+.btn {
   background-color: hsla(0, 100%, 70%, 0.6) !important;
   margin-top: 20px;
   border: none;
 }
-#webLogo{
+#webLogo {
   width: 250px;
   height: 80px;
 }
 .cssload-thecube {
-	width: 73px;
-	height: 73px;
-	margin: 0 auto;
-	margin-top: 49px;
-	position: relative;
-	transform: rotateZ(45deg);
-		-o-transform: rotateZ(45deg);
-		-ms-transform: rotateZ(45deg);
-		-webkit-transform: rotateZ(45deg);
-		-moz-transform: rotateZ(45deg);
+  width: 73px;
+  height: 73px;
+  margin: 0 auto;
+  margin-top: 49px;
+  position: relative;
+  transform: rotateZ(45deg);
+  -o-transform: rotateZ(45deg);
+  -ms-transform: rotateZ(45deg);
+  -webkit-transform: rotateZ(45deg);
+  -moz-transform: rotateZ(45deg);
 }
 .cssload-thecube .cssload-cube {
-	position: relative;
-	transform: rotateZ(45deg);
-		-o-transform: rotateZ(45deg);
-		-ms-transform: rotateZ(45deg);
-		-webkit-transform: rotateZ(45deg);
-		-moz-transform: rotateZ(45deg);
+  position: relative;
+  transform: rotateZ(45deg);
+  -o-transform: rotateZ(45deg);
+  -ms-transform: rotateZ(45deg);
+  -webkit-transform: rotateZ(45deg);
+  -moz-transform: rotateZ(45deg);
 }
 .cssload-thecube .cssload-cube {
-	float: left;
-	width: 50%;
-	height: 50%;
-	position: relative;
-	transform: scale(1.1);
-		-o-transform: scale(1.1);
-		-ms-transform: scale(1.1);
-		-webkit-transform: scale(1.1);
-		-moz-transform: scale(1.1);
+  float: left;
+  width: 50%;
+  height: 50%;
+  position: relative;
+  transform: scale(1.1);
+  -o-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
 }
 .cssload-thecube .cssload-cube:before {
-	content: "";
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgb(43,160,199);
-	animation: cssload-fold-thecube 2.76s infinite linear both;
-		-o-animation: cssload-fold-thecube 2.76s infinite linear both;
-		-ms-animation: cssload-fold-thecube 2.76s infinite linear both;
-		-webkit-animation: cssload-fold-thecube 2.76s infinite linear both;
-		-moz-animation: cssload-fold-thecube 2.76s infinite linear both;
-	transform-origin: 100% 100%;
-		-o-transform-origin: 100% 100%;
-		-ms-transform-origin: 100% 100%;
-		-webkit-transform-origin: 100% 100%;
-		-moz-transform-origin: 100% 100%;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(43, 160, 199);
+  animation: cssload-fold-thecube 2.76s infinite linear both;
+  -o-animation: cssload-fold-thecube 2.76s infinite linear both;
+  -ms-animation: cssload-fold-thecube 2.76s infinite linear both;
+  -webkit-animation: cssload-fold-thecube 2.76s infinite linear both;
+  -moz-animation: cssload-fold-thecube 2.76s infinite linear both;
+  transform-origin: 100% 100%;
+  -o-transform-origin: 100% 100%;
+  -ms-transform-origin: 100% 100%;
+  -webkit-transform-origin: 100% 100%;
+  -moz-transform-origin: 100% 100%;
 }
 .cssload-thecube .cssload-c2 {
-	transform: scale(1.1) rotateZ(90deg);
-		-o-transform: scale(1.1) rotateZ(90deg);
-		-ms-transform: scale(1.1) rotateZ(90deg);
-		-webkit-transform: scale(1.1) rotateZ(90deg);
-		-moz-transform: scale(1.1) rotateZ(90deg);
+  transform: scale(1.1) rotateZ(90deg);
+  -o-transform: scale(1.1) rotateZ(90deg);
+  -ms-transform: scale(1.1) rotateZ(90deg);
+  -webkit-transform: scale(1.1) rotateZ(90deg);
+  -moz-transform: scale(1.1) rotateZ(90deg);
 }
 .cssload-thecube .cssload-c3 {
-	transform: scale(1.1) rotateZ(180deg);
-		-o-transform: scale(1.1) rotateZ(180deg);
-		-ms-transform: scale(1.1) rotateZ(180deg);
-		-webkit-transform: scale(1.1) rotateZ(180deg);
-		-moz-transform: scale(1.1) rotateZ(180deg);
+  transform: scale(1.1) rotateZ(180deg);
+  -o-transform: scale(1.1) rotateZ(180deg);
+  -ms-transform: scale(1.1) rotateZ(180deg);
+  -webkit-transform: scale(1.1) rotateZ(180deg);
+  -moz-transform: scale(1.1) rotateZ(180deg);
 }
 .cssload-thecube .cssload-c4 {
-	transform: scale(1.1) rotateZ(270deg);
-		-o-transform: scale(1.1) rotateZ(270deg);
-		-ms-transform: scale(1.1) rotateZ(270deg);
-		-webkit-transform: scale(1.1) rotateZ(270deg);
-		-moz-transform: scale(1.1) rotateZ(270deg);
+  transform: scale(1.1) rotateZ(270deg);
+  -o-transform: scale(1.1) rotateZ(270deg);
+  -ms-transform: scale(1.1) rotateZ(270deg);
+  -webkit-transform: scale(1.1) rotateZ(270deg);
+  -moz-transform: scale(1.1) rotateZ(270deg);
 }
 .cssload-thecube .cssload-c2:before {
-	animation-delay: 0.35s;
-		-o-animation-delay: 0.35s;
-		-ms-animation-delay: 0.35s;
-		-webkit-animation-delay: 0.35s;
-		-moz-animation-delay: 0.35s;
+  animation-delay: 0.35s;
+  -o-animation-delay: 0.35s;
+  -ms-animation-delay: 0.35s;
+  -webkit-animation-delay: 0.35s;
+  -moz-animation-delay: 0.35s;
 }
 .cssload-thecube .cssload-c3:before {
-	animation-delay: 0.69s;
-		-o-animation-delay: 0.69s;
-		-ms-animation-delay: 0.69s;
-		-webkit-animation-delay: 0.69s;
-		-moz-animation-delay: 0.69s;
+  animation-delay: 0.69s;
+  -o-animation-delay: 0.69s;
+  -ms-animation-delay: 0.69s;
+  -webkit-animation-delay: 0.69s;
+  -moz-animation-delay: 0.69s;
 }
 .cssload-thecube .cssload-c4:before {
-	animation-delay: 1.04s;
-		-o-animation-delay: 1.04s;
-		-ms-animation-delay: 1.04s;
-		-webkit-animation-delay: 1.04s;
-		-moz-animation-delay: 1.04s;
+  animation-delay: 1.04s;
+  -o-animation-delay: 1.04s;
+  -ms-animation-delay: 1.04s;
+  -webkit-animation-delay: 1.04s;
+  -moz-animation-delay: 1.04s;
 }
 
-
-
 @keyframes cssload-fold-thecube {
-	0%, 10% {
-		transform: perspective(136px) rotateX(-180deg);
-		opacity: 0;
-	}
-	25%,
-				75% {
-		transform: perspective(136px) rotateX(0deg);
-		opacity: 1;
-	}
-	90%,
-				100% {
-		transform: perspective(136px) rotateY(180deg);
-		opacity: 0;
-	}
+  0%,
+  10% {
+    transform: perspective(136px) rotateX(-180deg);
+    opacity: 0;
+  }
+  25%,
+  75% {
+    transform: perspective(136px) rotateX(0deg);
+    opacity: 1;
+  }
+  90%,
+  100% {
+    transform: perspective(136px) rotateY(180deg);
+    opacity: 0;
+  }
 }
 
 @-o-keyframes cssload-fold-thecube {
-	0%, 10% {
-		-o-transform: perspective(136px) rotateX(-180deg);
-		opacity: 0;
-	}
-	25%,
-				75% {
-		-o-transform: perspective(136px) rotateX(0deg);
-		opacity: 1;
-	}
-	90%,
-				100% {
-		-o-transform: perspective(136px) rotateY(180deg);
-		opacity: 0;
-	}
+  0%,
+  10% {
+    -o-transform: perspective(136px) rotateX(-180deg);
+    opacity: 0;
+  }
+  25%,
+  75% {
+    -o-transform: perspective(136px) rotateX(0deg);
+    opacity: 1;
+  }
+  90%,
+  100% {
+    -o-transform: perspective(136px) rotateY(180deg);
+    opacity: 0;
+  }
 }
 
 @-ms-keyframes cssload-fold-thecube {
-	0%, 10% {
-		-ms-transform: perspective(136px) rotateX(-180deg);
-		opacity: 0;
-	}
-	25%,
-				75% {
-		-ms-transform: perspective(136px) rotateX(0deg);
-		opacity: 1;
-	}
-	90%,
-				100% {
-		-ms-transform: perspective(136px) rotateY(180deg);
-		opacity: 0;
-	}
+  0%,
+  10% {
+    -ms-transform: perspective(136px) rotateX(-180deg);
+    opacity: 0;
+  }
+  25%,
+  75% {
+    -ms-transform: perspective(136px) rotateX(0deg);
+    opacity: 1;
+  }
+  90%,
+  100% {
+    -ms-transform: perspective(136px) rotateY(180deg);
+    opacity: 0;
+  }
 }
 
 @-webkit-keyframes cssload-fold-thecube {
-	0%, 10% {
-		-webkit-transform: perspective(136px) rotateX(-180deg);
-		opacity: 0;
-	}
-	25%,
-				75% {
-		-webkit-transform: perspective(136px) rotateX(0deg);
-		opacity: 1;
-	}
-	90%,
-				100% {
-		-webkit-transform: perspective(136px) rotateY(180deg);
-		opacity: 0;
-	}
+  0%,
+  10% {
+    -webkit-transform: perspective(136px) rotateX(-180deg);
+    opacity: 0;
+  }
+  25%,
+  75% {
+    -webkit-transform: perspective(136px) rotateX(0deg);
+    opacity: 1;
+  }
+  90%,
+  100% {
+    -webkit-transform: perspective(136px) rotateY(180deg);
+    opacity: 0;
+  }
 }
 
 @-moz-keyframes cssload-fold-thecube {
-	0%, 10% {
-		-moz-transform: perspective(136px) rotateX(-180deg);
-		opacity: 0;
-	}
-	25%,
-				75% {
-		-moz-transform: perspective(136px) rotateX(0deg);
-		opacity: 1;
-	}
-	90%,
-				100% {
-		-moz-transform: perspective(136px) rotateY(180deg);
-		opacity: 0;
-	}
+  0%,
+  10% {
+    -moz-transform: perspective(136px) rotateX(-180deg);
+    opacity: 0;
+  }
+  25%,
+  75% {
+    -moz-transform: perspective(136px) rotateX(0deg);
+    opacity: 1;
+  }
+  90%,
+  100% {
+    -moz-transform: perspective(136px) rotateY(180deg);
+    opacity: 0;
+  }
 }
 /* this the seconde modal what we recommend */
 .modal2 {
-	display: block; /* Hidden by default */
-	position: fixed; /* Stay in place */
-	z-index: 1; /* Sit on top */
-	padding-top: 100px; /* Location of the box */
-	left: 0;
-	top: 0;
-	width: 100%; /* Full width */
-	height: 100%; /* Full height */
-	overflow: auto; /* Enable scroll if needed */
-	background-color: rgb(0, 0, 0); /* Fallback color */
-	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-  }
+  display: block; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
 
-  /* Modal2 Content */
-  .modal2-content {
-	position: relative;
-	background-color: #fefefe;
-	margin: auto;
-	padding: 0;
-	border: 1px solid #888;
-	width: 40%;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-	  0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	-webkit-animation-name: animatetop;
-	-webkit-animation-duration: 0.4s;
-	animation-name: animatetop;
-	animation-duration: 0.4s;
-  }
+/* Modal2 Content */
+.modal2-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 40%;
+  box-shadow:
+    0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
 
-  /* Add Animation */
-  @-webkit-keyframes animatetop {
-	from {
-	  top: -300px;
-	  opacity: 0;
-	}
-	to {
-	  top: 0;
-	  opacity: 1;
-	}
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
   }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
 
-  @keyframes animatetop {
-	from {
-	  top: -300px;
-	  opacity: 0;
-	}
-	to {
-	  top: 0;
-	  opacity: 1;
-	}
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
   }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
 
-  /* The Close Button */
-  .close2 {
-	color: white;
-	float: right;
-	font-size: 28px;
-	font-weight: bold;
-  }
+/* The Close Button */
+.close2 {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
 
-  .close2:hover,
-  .close2:focus {
-	color: #000;
-	text-decoration: none;
-	cursor: pointer;
-  }
+.close2:hover,
+.close2:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
 
-  .modal2-header {
-	padding: 2px 16px;
-	background-color: hsla(0, 100%, 70%, 0.6);
-	color: white;
-  }
+.modal2-header {
+  padding: 2px 16px;
+  background-color: hsla(0, 100%, 70%, 0.6);
+  color: white;
+}
 
-  .modal2-body {
-	padding: 2px 16px;
-  }
+.modal2-body {
+  padding: 2px 16px;
+}
 
-  .modal2-footer {
-	padding: 2px 16px;
-	background-color: hsla(0, 100%, 70%, 0.6);
-	color: white;
+.modal2-footer {
+  padding: 2px 16px;
+  background-color: hsla(0, 100%, 70%, 0.6);
+  color: white;
+}
+.openModalwwr {
+  width: 100px;
+  height: 40px;
+  font-size: 15px;
+  display: flex;
+  background-color: hsla(0, 100%, 70%, 0.6);
+  margin-top: 20px;
+  border: none;
+  border-radius: 5px;
+  align-items: center;
+  margin-left: 10px;
+  padding-left: 30px;
+}
+#okBtn {
+  background-color: hsla(0, 100%, 30%, 0.6);
+  width: 50px;
+  border: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+#loader {
+  width: 48px;
+  height: 48px;
+  left: 50%;
+  top: 50%;
+  border-radius: 50%;
+  display: inline-block;
+  position: absolute;
+  border: 3px solid;
+  border-color: #fff #fff transparent transparent;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+  margin: -76px 0 0 -76px;
+  z-index: 1;
+}
+#iconRed {
+  fill: red;
+  width: 30px;
+  height: 30px;
+}
+#loader::after,
+#loader::before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  border: 3px solid;
+  border-color: transparent transparent #ff3d00 #ff3d00;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  animation: rotationBack 0.5s linear infinite;
+  transform-origin: center center;
+}
+#loader::before {
+  width: 32px;
+  height: 32px;
+  border-color: #fff #fff transparent transparent;
+  animation: rotation 1.5s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
   }
-  .openModalwwr{
-	width: 100px;
-	height: 40px;
-	font-size: 15px;
-	display: flex;
-	background-color: hsla(0, 100%, 70%, 0.6);
-	margin-top: 20px;
-	border: none;
-	border-radius: 5px;
-	align-items: center;
-	margin-left: 10px;
-	padding-left: 30px;
+  100% {
+    transform: rotate(360deg);
   }
-  #okBtn{
-	background-color:hsla(0, 100%, 30%, 0.6) ;
-	width: 50px;
-	border: none;
-	margin-top: 10px;
-	margin-bottom: 10px;
+}
+@keyframes rotationBack {
+  0% {
+    transform: rotate(0deg);
   }
-  #loader {
-	width: 48px;
-	height: 48px;
-	left: 50%;
-	top: 50%;
-	border-radius: 50%;
-	display: inline-block;
-	position: absolute;
-	border: 3px solid;
-	border-color: #FFF #FFF transparent transparent;
-	box-sizing: border-box;
-	animation: rotation 1s linear infinite;
-	margin: -76px 0 0 -76px;
-	z-index: 1;
+  100% {
+    transform: rotate(-360deg);
   }
-  #iconRed{
-	fill: red;
-	width: 30px;
-	height: 30px;
-  }
-  #loader::after,
-  #loader::before {
-	content: '';  
-	box-sizing: border-box;
-	position: absolute;
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	margin: auto;
-	border: 3px solid;
-	border-color: transparent transparent #FF3D00 #FF3D00;
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-	box-sizing: border-box;
-	animation: rotationBack 0.5s linear infinite;
-	transform-origin: center center;
-  }
-  #loader::before {
-	width: 32px;
-	height: 32px;
-	border-color: #FFF #FFF transparent transparent;
-	animation: rotation 1.5s linear infinite;
-  }
-	  
-  @keyframes rotation {
-	0% {
-	  transform: rotate(0deg);
-	}
-	100% {
-	  transform: rotate(360deg);
-	}
-  } 
-  @keyframes rotationBack {
-	0% {
-	  transform: rotate(0deg);
-	}
-	100% {
-	  transform: rotate(-360deg);
-	}
-  }
-	  
+}

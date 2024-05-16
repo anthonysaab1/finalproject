@@ -1,24 +1,24 @@
-.container{
- display: flex;
- flex-direction: row;
- justify-content: center;
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
-.box{
-    width: 150px;
-    height: 150px;
-    font-size: 8em;
-    text-align: center;
-    border-radius:15px ;
+.box {
+  width: 150px;
+  height: 150px;
+  font-size: 8em;
+  text-align: center;
+  border-radius: 15px;
 }
 #box1 {
-    background-color: brown;
+  background-color: brown;
 }
 #box2 {
-    background-color: rgb(234, 207, 9);
-} 
+  background-color: rgb(234, 207, 9);
+}
 #box3 {
-    background-color: rgb(0, 55, 255);
+  background-color: rgb(0, 55, 255);
 }
 #box4 {
-    background-color: rgb(255, 0, 230);
+  background-color: rgb(255, 0, 230);
 }
