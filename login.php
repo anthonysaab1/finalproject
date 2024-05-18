@@ -1,7 +1,8 @@
 <?php
 session_start();
 if (isset($_SESSION["user"])) {
-   header("Location: index.php");
+    header("Location: index.php");
+    exit();
 }
 ?>
 <!DOCTYPE html>
@@ -17,39 +18,48 @@ if (isset($_SESSION["user"])) {
 <body>
     <div class="container">
         <?php
+        $email = "";
         if (isset($_POST["login"])) {
-           $email = $_POST["email"];
-           $password = $_POST["password"];
+            $email = $_POST["email"];
+            $password = $_POST["password"];
             require_once "database.php";
-            $sql = "SELECT * FROM users WHERE email = '$email'";
-            $result = mysqli_query($conn, $sql);
-            $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
-            if ($user) {
-                if (password_verify($password, $user["password"])) {
-                    session_start();
-                    $_SESSION["user"] = "yes";
-                    header("Location: movie.php");
-                    die();
-                }else{
-                    echo "<div class='alert alert-danger'>Password does not match</div>";
+            $sql = "SELECT * FROM users WHERE email = ?";
+            $stmt = mysqli_stmt_init($conn);
+            if (mysqli_stmt_prepare($stmt, $sql)) {
+                mysqli_stmt_bind_param($stmt, "s", $email);
+                mysqli_stmt_execute($stmt);
+                $result = mysqli_stmt_get_result($stmt);
+                $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
+                if ($user) {
+                    if (password_verify($password, $user["password"])) {
+                        $_SESSION["user"] = "yes";
+                        header("Location: movie.php");
+                        exit();
+                    } else {
+                        echo "<div class='alert alert-danger'>Password does not match</div>";
+                    }
+                } else {
+                    echo "<div class='alert alert-danger'>Email does not match</div>";
                 }
-            }else{
-                echo "<div class='alert alert-danger'>Email does not match</div>";
+            } else {
+                echo "<div class='alert alert-danger'>Database error</div>";
             }
         }
         ?>
-      <form action="login.php" method="post">
-        <div class="form-group">
-            <input type="email" placeholder="Enter Email:" name="email" class="form-control">
+        <form action="login.php" method="post">
+            <div class="form-group">
+                <input type="email" placeholder="Enter Email:" name="email" class="form-control" value="<?php echo htmlspecialchars($email); ?>">
+            </div>
+            <div class="form-group">
+                <input type="password" placeholder="Enter Password:" name="password" class="form-control">
+            </div>
+            <div class="form-btn">
+                <input type="submit" value="Login" name="login" class="btn btn-primary">
+            </div>
+        </form>
+        <div>
+            <p>Not registered yet <a href="registration.php">Register Here</a></p>
         </div>
-        <div class="form-group">
-            <input type="password" placeholder="Enter Password:" name="password" class="form-control">
-        </div>
-        <div class="form-btn">
-            <input type="submit" value="Login" name="login" class="btn btn-primary">
-        </div>
-      </form>
-     <div><p>Not registered yet <a href="registration.php">Register Here</a></p></div>
     </div>
 </body>
 </html>

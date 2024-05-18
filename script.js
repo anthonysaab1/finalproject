@@ -9,7 +9,7 @@ let happyCt = document.getElementById("happyBtn");
 let sadCt = document.getElementById("sadBtn");
 let angryCt = document.getElementById("angryBtn");
 let loader = document.getElementById("loader");
-console.log(loader);
+
 let datas;
 let userIdArr = localStorage.userId ? JSON.parse(localStorage.userId) : [];
 async function filterCategories(category, num) {
@@ -80,6 +80,7 @@ async function creatMovie(data) {
       moviefav.innerHTML = favIcon;
       moviefav.setAttribute("id", "blackFaveIcon");
     }
+
     let moviebtn = document.createElement("div");
     moviebtn.setAttribute("id", "myBtn");
     moviebtn.addEventListener("click", async function () {
@@ -205,27 +206,28 @@ async function favVideo(moviecbtn, id, Movie, moviefav) {
         }
       }
     } else {
-      // moviecbtn.addEventListener("dbclick", async () => {
-      //   for (let i = 0; i < datas.length; i++) {
-      //     if (Movie.id == datas[i].id) {
-      //       try {
-      //         const response = await fetch(
-      //           `"favorite.php"`,
-      //           {
-      //             method: "DELETE",
-      //           },
-      //         );
-      //         if (!response.ok) {
-      //           throw new Error(`Failed to delete object with ID `);
-      //         } else {
-      //           moviefav.innerHTML = favIcon;
-      //         }
-      //       } catch (error) {
-      //         console.error("Error occurred", error);
-      //       }
-      //     }
-      //   }
-      // });
+      const response = await fetch("favorite.php", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: 1,
+          userId: 1,
+          movie_id: Movie.id,
+        }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        console.log("Success:", data);
+        moviefav.innerHTML = favIcon;
+
+        userIdArr = userIdArr.filter((item) => item != Movie.id);
+        localStorage.setItem("userId", JSON.stringify(userIdArr));
+      } else {
+        console.error("Error:", data);
+      }
     }
   });
 }

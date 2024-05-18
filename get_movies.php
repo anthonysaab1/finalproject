@@ -31,12 +31,13 @@ if ($conn->connect_error) {
 }
 
 $id = $_GET["id"];
-$sql = "SELECT a.*,  (SELECT COUNT(id) FROM user_favorite WHERE user_id = ".  $id ." AND movie_id = a.id) AS user_fav FROM movies a";
+$sql = "SELECT a.*,  (SELECT COUNT(id) FROM user_favorite WHERE user_id = 1 AND movie_id = a.id) AS user_fav FROM movies a";
 $result = $conn->query($sql);
 
 $movies = array();
 
 if ($result->num_rows > 0) {
+  
   while ($row = $result->fetch_assoc()) {
     $movies[] = $row;
   }
