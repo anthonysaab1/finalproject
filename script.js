@@ -9,7 +9,7 @@ let happyCt = document.getElementById("happyBtn");
 let sadCt = document.getElementById("sadBtn");
 let angryCt = document.getElementById("angryBtn");
 let loader = document.getElementById("loader");
-
+var callout = document.getElementById("calloutMessage");
 let datas;
 let userIdArr = localStorage.userId ? JSON.parse(localStorage.userId) : [];
 async function filterCategories(category, num) {
@@ -197,6 +197,12 @@ async function favVideo(moviecbtn, id, Movie, moviefav) {
               console.log(result);
               console.log(moviefav);
               moviefav.innerHTML = favIconRed;
+
+              callout.classList.add("show");
+              callout.textContent = `${Movie.title} added to your favorite list`;
+              setTimeout(function () {
+                callout.classList.remove("show");
+              }, 3000);
             } else {
               console.error("Request failed", response.statusText);
             }
@@ -222,9 +228,13 @@ async function favVideo(moviecbtn, id, Movie, moviefav) {
       if (response.ok) {
         console.log("Success:", data);
         moviefav.innerHTML = favIcon;
-
         userIdArr = userIdArr.filter((item) => item != Movie.id);
         localStorage.setItem("userId", JSON.stringify(userIdArr));
+        callout.classList.add("show");
+        callout.textContent = `${Movie.title} remove from your favorite list`;
+        setTimeout(function () {
+          callout.classList.remove("show");
+        }, 3000);
       } else {
         console.error("Error:", data);
       }

@@ -91,6 +91,7 @@ if (!isset($_SESSION["user"])) {
     </div>
   </div>
 </div>
+<div id="calloutMessage" class="callout"></div>
 
 
     <script src="script.js"></script>
