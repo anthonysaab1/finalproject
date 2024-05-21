@@ -7,22 +7,6 @@ void main() {
   runApp(MyApp());
 }
 
-class LocalStorage {
-  static Map<String, dynamic> _storage = {};
-
-  static void setItem(String key, dynamic value) {
-    _storage[key] = value;
-  }
-
-  static dynamic getItem(String key) {
-    return _storage[key];
-  }
-
-  static void removeItem(String key) {
-    _storage.remove(key);
-  }
-}
-
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -43,6 +27,7 @@ class MovieList extends StatefulWidget {
 class _MovieListState extends State<MovieList> {
   List<dynamic> originalDatas = [];
   List<dynamic> datas = [];
+  Map<int, bool> favoriteStatus = {}; // To track the favorite status locally
 
   @override
   void initState() {
@@ -55,10 +40,12 @@ class _MovieListState extends State<MovieList> {
         .get(Uri.parse('http://localhost/finalproject/get_movies.php?id=1'));
     if (response.statusCode == 200) {
       setState(() {
-        originalDatas = json.decode(response.body);
+        originalDatas = json.decode(response.body).map((data) {
+          data['id'] = int.parse(data['id'].toString());
+          data['category_id'] = int.parse(data['category_id'].toString());
+          return data;
+        }).toList();
         datas = List.from(originalDatas);
-
-        // Debugging information
         print('Fetched original data: $originalDatas');
       });
     } else {
@@ -68,37 +55,17 @@ class _MovieListState extends State<MovieList> {
 
   void filterCategories(int category) {
     setState(() {
-      print('Filtering data for category: $category');
-      print('Current original data: $originalDatas');
-
       datas = originalDatas.where((ca) {
-        int itemCategoryId = int.tryParse(ca['category_id'].toString()) ?? -1;
-        bool matches = itemCategoryId == category;
-        print(
-            'Checking item with category_id: ${itemCategoryId} against selected category: $category - Match: $matches');
-        return matches;
+        int itemCategoryId = ca['category_id'] as int;
+        return itemCategoryId == category;
       }).toList();
-
-      print('Filtered data: $datas');
-      print('Selected category: $category');
     });
   }
 
-  void favVideo(int id, dynamic movie) {
-    String userId = LocalStorage.getItem('userId');
-    if (userId == null || !userId.contains(id.toString())) {
-      LocalStorage.setItem('userId', (userId ?? '') + id.toString() + ',');
-      // Your code to favorite the video goes here
-    } else {
-      setState(() {
-        datas = datas.map((item) {
-          if (item['id'] == id) {
-            item['user_fav'] = 0;
-          }
-          return item;
-        }).toList();
-      });
-    }
+  void favVideo(int id) {
+    setState(() {
+      favoriteStatus[id] = !(favoriteStatus[id] ?? false);
+    });
   }
 
   Future<void> _refreshMovies() async {
@@ -144,14 +111,20 @@ class _MovieListState extends State<MovieList> {
               itemCount: datas.length,
               itemBuilder: (context, index) {
                 final movie = datas[index];
+                int movieId = movie['id'] as int;
                 return ListTile(
                   title: Text(movie['title']),
                   leading: Image.network(movie['image']),
                   trailing: IconButton(
-                    icon: Icon(movie['user_fav'] == 1
-                        ? Icons.favorite
-                        : Icons.favorite_border),
-                    onPressed: () => favVideo(movie['id'], movie),
+                    icon: Icon(
+                      favoriteStatus[movieId] == true
+                          ? Icons.favorite
+                          : Icons.favorite_border,
+                      color: favoriteStatus[movieId] == true
+                          ? Colors.red
+                          : Colors.black,
+                    ),
+                    onPressed: () => favVideo(movieId),
                   ),
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
